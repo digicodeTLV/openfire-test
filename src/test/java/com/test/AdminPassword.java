@@ -15,6 +15,7 @@ public class AdminPassword {
 
 		/*--------- Cannot Login to Admin Console? -------------------------------------------------------------*/
 
+
 		/*  0. Define new password:*/
 		String plainPass = "qwert123q";
 		/*  1.  SELECT propValue FROM ofProperty WHERE name='passwordKey';
