@@ -133,4 +133,35 @@ public class XmppManager {
 
 	}
 
+
+	public static XmppManager loginAndJoin(String username) throws Exception{
+		XmppManager xmppManager = new XmppManager(XmppCfg.OF_SERVER, XmppCfg.OF_SERVER_PORT);
+
+		xmppManager.init();
+		xmppManager.performLogin(username, XmppCfg.OF_TEST_PASSWORD);
+		xmppManager.setStatus(true, "Hello everyone");
+		xmppManager.joinMultiUserChatRoom(username, XmppCfg.OF_TEST_ROOM_NAME);
+
+		return xmppManager;
+	}
+
+	public static void loginJoinAndWait (String username, Integer num) throws Exception {
+
+		XmppManager xmppManager = loginAndJoin(username);
+
+    	if (num!=null && XmppCfg.doSendMessages && num % 100 == 0) {
+			xmppManager.sendMessage("Hello! Я тестовый пользователь №" + num, XmppCfg.OF_TEST_LUIZA);
+		}
+
+		boolean isRunning = true;
+
+		while (isRunning) {
+			Thread.sleep(50);
+		}
+
+		xmppManager.destroy();
+
+	}
+
+
 }
