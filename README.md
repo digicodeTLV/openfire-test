@@ -1,7 +1,7 @@
 # openfire-test
 
 <code>
-java -jar ofTest.jar 1 5 tymoshenkol
+java -Xmx5G -jar oftest-1.0-SNAPSHOT.jar 5001 5002 aimm-buntu
 </code>
 
 <b>Cannot Login to Admin Console?</b>
