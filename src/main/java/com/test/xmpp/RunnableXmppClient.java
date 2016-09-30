@@ -11,9 +11,6 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class RunnableXmppClient implements Runnable {
 
 
-
-
-
 	private static AtomicInteger count = new AtomicInteger(0);
 	private int num;
 

@@ -64,6 +64,7 @@ public class XmppManager {
 
 	public void performLogin (String username, String password) throws XMPPException {
 		if (connection != null && connection.isConnected()) {
+			log.debug("performLogin: {}", username);
 			connection.login(username, password);
 		}
 	}
@@ -102,7 +103,7 @@ public class XmppManager {
 		MultiUserChat multiUserChat = new MultiUserChat(connection, roomName );
 
 		DiscussionHistory history = new DiscussionHistory();
-		history.setMaxStanzas(-1);
+		history.setMaxStanzas(0);
 		try {
 			multiUserChat.join(userName, "", history, packetReplyTimeout);
 
