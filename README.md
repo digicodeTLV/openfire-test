@@ -1,8 +1,18 @@
-# openfire-test
+# Openfire-test
 
-<code>
-java -Xmx5G -jar oftest-1.0-SNAPSHOT.jar 5001 5002 aimm-buntu
-</code>
+    $ mvn clean package
+    $ cd target
 
-<b>Cannot Login to Admin Console?</b>
-read: <a href="src/test/java/com/test/AdminPassword.java">AdminPassword.java</a>
+Localhost:
+
+    $ java -Xmx5G -jar oftest-1.0-SNAPSHOT.jar 5001 5002 tymoshenkol
+   
+Cluster:
+
+    $ java -Xmx5G -jar oftest-1.0-SNAPSHOT.jar  Start#  Stop#   Server.IP       Xmpp.Domain.Name    Send.Messages
+    $ java -Xmx5G -jar oftest-1.0-SNAPSHOT.jar  1000    1999    192.168.1.162   aimm-buntu          false
+    $ java -Xmx5G -jar oftest-1.0-SNAPSHOT.jar  2000    2999    192.168.1.123   aimm-buntu          false
+
+**Cannot Login to Admin Console?**
+
+read: [AdminPassword.java](src/test/java/com/test/AdminPassword.java)

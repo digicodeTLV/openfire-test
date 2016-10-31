@@ -2,8 +2,6 @@ package com.test.xmpp;
 
 import lombok.extern.slf4j.Slf4j;
 
-import java.util.concurrent.atomic.AtomicInteger;
-
 /**
  * Created by tymoshenkol on 31-Aug-16.
  */
@@ -14,21 +12,32 @@ public class XmppCfg {
 	public static final String OF_TEST_PASSWORD = "123";
 	public static final String OF_TEST_LOGIN_APPENDER = "test1";
 
-	public static String OF_SERVER = "aimm-buntu"; //"dev29";
-	public static String OF_TEST_ROOM_NAME = "unlimitedtest@conference."+OF_SERVER;
-	public static String OF_TEST_LUIZA = "luiza@"+OF_SERVER;
+
+	public static final String[] OF_SERVERS = new String[]{
+			"tymoshenkol", "aimm-buntu"
+			, "192.168.1.123"
+			, "192.168.1.162"
+	};
+
+	public static String OF_DOMAIN_NAME = "aimm-buntu";
+	public static String OF_SERVER = OF_SERVERS[3];
+	public static String OF_TEST_ROOM_NAME = "unlimitedtest@conference."+OF_DOMAIN_NAME;
+	public static String OF_TEST_ROOM_NAME2 = "unlimitedtest2@conference."+OF_DOMAIN_NAME;
+	public static String OF_TEST_LUIZA = "luiza@"+OF_DOMAIN_NAME;
+	public static boolean doSendMessages = false;
 
 	public static void setDoSendMessages (boolean doSendMessages) {
 		XmppCfg.doSendMessages = doSendMessages;
 	}
 
-	public static boolean doSendMessages = false;
-
 	public static void setOfServer (String ofServer) {
 		OF_SERVER = ofServer;
-		OF_TEST_ROOM_NAME = "unlimitedtest@conference."+ofServer;
-		OF_TEST_LUIZA = "luiza@"+OF_SERVER;
 	}
-
+	public static void setOfDomainName (String ofDomainName) {
+		OF_DOMAIN_NAME = ofDomainName;
+		OF_TEST_ROOM_NAME = "unlimitedtest@conference."+OF_DOMAIN_NAME;
+		OF_TEST_ROOM_NAME2 = "unlimitedtest2@conference."+OF_DOMAIN_NAME;
+		OF_TEST_LUIZA = "luiza@"+OF_DOMAIN_NAME;
+	}
 
 }

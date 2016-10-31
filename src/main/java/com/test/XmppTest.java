@@ -18,8 +18,8 @@ public class XmppTest {
 
 	public static void main (String[] args) throws Exception {
 		BlockingQueue<Void> pause = new ArrayBlockingQueue<Void>(1);
-		int start = 1;
-		int end = 25000;
+		int start = 1000;
+		int end = 1999;
 
 		if (args.length >= 2) {
 			start = Integer.valueOf(args[0]);
@@ -30,10 +30,12 @@ public class XmppTest {
 		}
 
 		if(args.length >=4 ){
-			XmppCfg.setDoSendMessages(Boolean.parseBoolean(args[4]));
+			XmppCfg.setOfDomainName(args[3]);
 		}
 
-		XmppCfg.setDoSendMessages(Boolean.parseBoolean("1"));
+		if(args.length >=5 ){
+			XmppCfg.setDoSendMessages(Boolean.parseBoolean(args[4]));
+		}
 
 		for (int i = start; i <= end; i++) {
 			log.debug("--: {}",new Date());

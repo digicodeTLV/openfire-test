@@ -3,8 +3,10 @@ package com.test.xmpp;
 import lombok.extern.slf4j.Slf4j;
 import org.jivesoftware.smack.Chat;
 import org.jivesoftware.smack.ChatManager;
+import org.jivesoftware.smack.ChatManagerListener;
 import org.jivesoftware.smack.ConnectionConfiguration;
 import org.jivesoftware.smack.ConnectionConfiguration.SecurityMode;
+import org.jivesoftware.smack.ConnectionListener;
 import org.jivesoftware.smack.MessageListener;
 import org.jivesoftware.smack.PacketListener;
 import org.jivesoftware.smack.Roster;
@@ -108,18 +110,27 @@ public class XmppManager {
 			multiUserChat.join(userName, "", history, packetReplyTimeout);
 
 			// Register a packet listener for all the messages sent to this client.
+
 			PacketTypeFilter typeFilter = new PacketTypeFilter(Message.class);
+
+			if(!connection.isConnected()) {
+				log.error("~~~~~~~~~~~~~~~~DISCONNECTED!");
+			//	System.exit(0);
+			}
 
 			connection.addPacketListener(new PacketListener() {
 				public void processPacket(Packet packet) {
 					log.debug(packet.toXML());
 					//handlePacket(packet);
 				}
-			}, typeFilter);
+			}, null);
 
 
 		} catch (Exception e) {
-			e.printStackTrace();
+
+			log.error(e.getMessage(), e.getCause());
+			log.error(e.getMessage(), e);
+			System.exit(0);
 		}
 	}
 
@@ -141,7 +152,9 @@ public class XmppManager {
 		xmppManager.init();
 		xmppManager.performLogin(username, XmppCfg.OF_TEST_PASSWORD);
 		xmppManager.setStatus(true, "Hello everyone");
+
 		xmppManager.joinMultiUserChatRoom(username, XmppCfg.OF_TEST_ROOM_NAME);
+		//xmppManager.joinMultiUserChatRoom(username, XmppCfg.OF_TEST_ROOM_NAME2);
 
 		return xmppManager;
 	}
@@ -153,6 +166,8 @@ public class XmppManager {
     	if (num!=null && XmppCfg.doSendMessages && num % 100 == 0) {
 			xmppManager.sendMessage("Hello! Я тестовый пользователь №" + num, XmppCfg.OF_TEST_LUIZA);
 		}
+		//xmppManager.sendMessage("Hello! Я тестовый пользователь №" + num, XmppCfg.OF_TEST_ROOM_NAME);
+		//xmppManager.sendMessage("Hello! Я тестовый пользователь №" + num, XmppCfg.OF_TEST_LUIZA);
 
 		boolean isRunning = true;
 
