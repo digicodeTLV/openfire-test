@@ -21,7 +21,9 @@ public class RunnableXmppClient implements Runnable {
 	}
 
 	public void run () {
-		log.debug("Hello from a thread #{}", count.get());
+		if (count.get() % 100 == 0) {
+			log.debug("Hello from a thread #{}", count.get());
+		}
 		try {
 			//loginAndJoin("luiza");
 			XmppManager.loginJoinAndWait(XmppCfg.OF_TEST_LOGIN_APPENDER + num, num);

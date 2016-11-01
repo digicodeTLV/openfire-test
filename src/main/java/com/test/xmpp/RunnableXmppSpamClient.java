@@ -1,6 +1,7 @@
 package com.test.xmpp;
 
 import lombok.extern.slf4j.Slf4j;
+import org.jivesoftware.smack.packet.Message;
 
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
@@ -32,10 +33,10 @@ public class RunnableXmppSpamClient implements Runnable {
 			XmppManager xmppManager = XmppManager.loginAndJoin(username);
 
 
-			xmppManager.sendMessage("Hello! Я тестовый пользователь: " + username, XmppCfg.OF_TEST_LUIZA);
+			xmppManager.sendMessage("Hello! Я тестовый пользователь: " + username, XmppCfg.OF_TEST_LUIZA, Message.Type.chat);
 			Integer n = 0;
 			while (true) {
-				xmppManager.sendMessage("Hello! I'm message #" + (n++), XmppCfg.OF_TEST_LUIZA);
+				xmppManager.sendMessage("Hello! I'm message #" + (n++), XmppCfg.OF_TEST_LUIZA,  Message.Type.chat);
 				pause.poll(timeDelay, TimeUnit.MILLISECONDS);
 				if (n > 10000) break;
 			}

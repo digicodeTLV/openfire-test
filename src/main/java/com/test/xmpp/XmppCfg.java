@@ -25,6 +25,7 @@ public class XmppCfg {
 	public static String OF_TEST_ROOM_NAME2 = "unlimitedtest2@conference."+OF_DOMAIN_NAME;
 	public static String OF_TEST_LUIZA = "luiza@"+OF_DOMAIN_NAME;
 	public static boolean doSendMessages = false;
+	public static long sendMessageTimeout = 30000;
 
 	public static void setDoSendMessages (boolean doSendMessages) {
 		XmppCfg.doSendMessages = doSendMessages;
@@ -40,4 +41,7 @@ public class XmppCfg {
 		OF_TEST_LUIZA = "luiza@"+OF_DOMAIN_NAME;
 	}
 
+	public static void setSendMessageTimeout (Long sendMessageTimeout) {
+		XmppCfg.sendMessageTimeout = sendMessageTimeout;
+	}
 }

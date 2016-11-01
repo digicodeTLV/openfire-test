@@ -8,6 +8,7 @@ import java.util.Date;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.LongAccumulator;
 
 /**
  * Created by tymoshenkol on 31-Aug-16.
@@ -17,9 +18,9 @@ public class XmppTest {
 
 
 	public static void main (String[] args) throws Exception {
-		BlockingQueue<Void> pause = new ArrayBlockingQueue<Void>(1);
+		BlockingQueue<Void> pause = new ArrayBlockingQueue<>(1);
 		int start = 1000;
-		int end = 1999;
+		int end = 1002;
 
 		if (args.length >= 2) {
 			start = Integer.valueOf(args[0]);
@@ -37,8 +38,12 @@ public class XmppTest {
 			XmppCfg.setDoSendMessages(Boolean.parseBoolean(args[4]));
 		}
 
+		if(args.length >=6 ){
+			XmppCfg.setSendMessageTimeout(Long.valueOf(args[5]));
+		}
+
 		for (int i = start; i <= end; i++) {
-			log.debug("--: {}",new Date());
+			//log.debug("--: {}",new Date());
 			(new Thread(new RunnableXmppClient(i))).start();
 			pause.poll(500, TimeUnit.MILLISECONDS);
 		}
