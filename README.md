@@ -1,5 +1,11 @@
 # Openfire-test
 
+Prepare Openfire: 
+
+How to create test users: [init.testers.sql](src/main/resources/db/init.testers.sql)
+
+Build tester jar: 
+
     $ mvn clean package
     $ cd target
 
